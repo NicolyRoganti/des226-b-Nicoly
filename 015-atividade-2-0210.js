@@ -5,11 +5,16 @@ const rl = readline.createInterface({
 });
 
 function validarAcesso(idade, acompanhado, bloqueado) {
+  const pessoaNaoBloqueada = !bloqueado;
+
   if (bloqueado === true) {
     return "Acesso Bloqueado";
   }
 
-  if (idade >= 18 || (idade >= 16 && acompanhado === true)) {
+  if (
+    pessoaNaoBloqueada &&
+    (idade >= 18 || (idade < 18 && acompanhado === true))
+  ) {
     return "Acesso Liberado";
   } else {
     return "Acesso Negado";
